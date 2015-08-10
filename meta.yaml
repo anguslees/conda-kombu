@@ -10,7 +10,7 @@ source:
    # List any patch files here
    # - fix.patch
 
-# build:
+build:
   # noarch_python: True
   # preserve_egg_dir: True
   # entry_points:
@@ -21,10 +21,9 @@ source:
     #
     # Would create an entry point called kombu that calls kombu.main()
 
-
   # If this is a new build for the same version, increment the build
   # number. If you do not include this key, it defaults to 0.
-  # number: 1
+  number: 1
 
 requirements:
   build:
@@ -56,6 +55,8 @@ test:
     #- kombu.transport.django.management.commands
     #- kombu.transport.django.migrations
     #- kombu.transport.sqlalchemy
+    - kombu.transport.librabbitmq
+    - kombu.transport.pyamqp
     - kombu.transport.virtual
     - kombu.utils
 
@@ -63,16 +64,12 @@ test:
     # You can put test commands to be run here.  Use this to test that the
     # entry points work.
 
-
   # You can also put a file called run_test.py in the recipe that will be run
   # at test time.
 
   requires:
-    - mock
-    - nose
-    - unittest2 >=0.5.0
-    # Put any additional test requirements here.  For example
-    # - nose
+    - librabbitmq
+    - amqp
 
 about:
   home: http://kombu.readthedocs.org
